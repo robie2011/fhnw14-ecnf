@@ -34,6 +34,11 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
             writeTitle("Aufgabe 2a");
             var BernCity = new City("Bern", "Schweiz", 75000, 47.491823923434, 8.2121323123);
 
+            writeTitle("Aufgabe 2b");
+            var MyCities = new Cities();
+
+            Console.WriteLine(MyCities.ReadCities("citiesTestDataLab2.txt"));
+
             Console.ReadKey();
         }
 
