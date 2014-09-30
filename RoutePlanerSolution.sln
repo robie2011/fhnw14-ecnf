@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutePlannerConsoleApp", "RoutePlannerConsoleApp\RoutePlannerConsoleApp.csproj", "{4DAB9201-4930-4811-889D-C4104DC34BBC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{45661034-B824-4AA9-A9C3-5D639C9BA056} = {45661034-B824-4AA9-A9C3-5D639C9BA056}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutePlannerLib", "RoutePlannerLib\RoutePlannerLib.csproj", "{45661034-B824-4AA9-A9C3-5D639C9BA056}"
 EndProject

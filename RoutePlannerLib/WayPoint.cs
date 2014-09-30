@@ -17,5 +17,13 @@ namespace RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib
             Latitude = _latitude;
             Longitude = _longitude;
         }
+
+        public override string ToString()
+        {
+            string str = String.Format("{0}/{1}", Math.Round(Longitude, 2), Math.Round(Latitude, 2));
+            if (Name.Length > 0)
+                str = Name + " " + str;
+            return str;
+        }
     }
 }
