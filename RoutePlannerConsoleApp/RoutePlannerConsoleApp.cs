@@ -31,6 +31,9 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
             var Tripolis = new WayPoint("Tripolis", 32.8084124, 13.150967199999968);
             Console.WriteLine(Bern.Distance(Tripolis));
 
+            writeTitle("Aufgabe 2a");
+            var BernCity = new City("Bern", "Schweiz", 75000, 47.491823923434, 8.2121323123);
+
             Console.ReadKey();
         }
 
