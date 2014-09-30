@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Device.Location;
 
 namespace RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
@@ -24,6 +25,13 @@ namespace RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib
             if (Name.Length > 0)
                 str = Name + " " + str;
             return str;
+        }
+
+        public double Distance(WayPoint target)
+        {
+            var from = new GeoCoordinate(Latitude, Longitude);
+            var to = new GeoCoordinate(target.Latitude, target.Longitude);
+            return from.GetDistanceTo(to) / 1000;
         }
     }
 }
