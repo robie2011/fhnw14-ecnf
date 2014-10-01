@@ -13,6 +13,7 @@ namespace RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib
         public int Population { get; set; }
         public WayPoint Location { get; set; }
 
+        // Lab 2, Aufgabe a
         public City(string name, string country, int population, double lat, double lng)
         {
             Name = name;
