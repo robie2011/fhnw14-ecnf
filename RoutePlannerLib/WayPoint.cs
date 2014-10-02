@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Device.Location;
 
-namespace RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib
+namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
     public class WayPoint
     {
