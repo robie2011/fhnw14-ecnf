@@ -11,14 +11,14 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 
     public class RouteRequestEventArgs : EventArgs
     {        
-        public string From {get; private set;}
-        public string To { get; private set; }
+        public City FromCity {get; private set;}
+        public City ToCity { get; private set; }
         public TransportModes Mode { get; private set; }
 
         public RouteRequestEventArgs(string from, string to, TransportModes mode)
         {
-            From = from;
-            To = to;
+            FromCity = new City(from);
+            ToCity = new City(to);
             Mode = mode;
         }
     }
@@ -27,16 +27,6 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
     {
         Dictionary<string,int> Data = new Dictionary<string,int>();
         public Routes Routes;
-        public RouteRequestWatcher(Routes routes)
-        {
-            Routes = routes;
-            // Lab 3, Aufgabe 2c
-            Routes.RouteRequestListener += delegate(object sender, RouteRequestEventArgs e)
-            {
-                if(Data.ContainsKey(e.To))
-                { Data[e.To]++; }
-            };
-        }
 
         public int GetCityRequests(string cityName)
         {
@@ -47,10 +37,12 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             return r;
         }
 
-        public void LogRouteRequests(string cityName)
+        // Lab 3, Aufgabe 2c
+        public void LogRouteRequests(object sender, RouteRequestEventArgs e)
         {
-            if(!Data.ContainsKey(cityName))
-            { Data.Add(cityName, 0); }
+            if (Data.ContainsKey(e.ToCity.Name))
+            { Data[e.ToCity.Name]++; }
+
         }
     }
 
@@ -61,7 +53,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
     {
         // Lab 3, Aufgabe 2a
         public delegate void RouteRequestHandler(object sender, RouteRequestEventArgs e);
-        public event RouteRequestHandler RouteRequestListener;
+        public event RouteRequestHandler RouteRequestEvent;
 
         List<Link> routes = new List<Link>();
         Cities cities;
@@ -126,9 +118,9 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         // Lab 3, Aufgabe 2b
         void notifyRouteRequestListener(RouteRequestEventArgs e)
         {
-            if (RouteRequestListener != null)
+            if (RouteRequestEvent != null)
             {
-                RouteRequestListener(this, e);
+                RouteRequestEvent(this, e);
             }
         }
 
