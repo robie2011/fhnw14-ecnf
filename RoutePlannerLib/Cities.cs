@@ -66,5 +66,14 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             return Results;
         }
 
+        // Lab 3, Aufgabe 1
+        public City FindCity(string cityName)
+        {
+            return Data.Find(delegate(City c)
+            {
+                return cityName.ToLower().Equals(c.Name.ToLower());
+            });
+        }
+
     }
 }

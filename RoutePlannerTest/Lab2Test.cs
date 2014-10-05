@@ -12,7 +12,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerTest
     /// Putting all test of a lab is just for convenience; 
     /// usually make, at least, one test file per "class under test" (CUT).
     ///</summary>
-    [TestClass]
+    [TestClass()]
     [DeploymentItem("data/citiesTestDataLab2.txt")]
     public class Lab2Test
     {
@@ -24,7 +24,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerTest
         /// <summary>
         /// A test for WayPoint Constructor        
         /// </summary>
-        [TestMethod]
+        [TestMethod()]
         public void TestWayPointValidConstructor()
         {
             var target = new WayPoint(Name, Latitude, Longitude);

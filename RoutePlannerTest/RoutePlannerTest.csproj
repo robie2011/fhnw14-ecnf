@@ -51,9 +51,14 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Lab2Test.cs" />
+    <Compile Include="Lab3Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RoutePlannerConsoleApp\RoutePlannerConsoleApp.csproj">
+      <Project>{4dab9201-4930-4811-889d-c4104dc34bbc}</Project>
+      <Name>RoutePlannerConsoleApp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RoutePlannerLib\RoutePlannerLib.csproj">
       <Project>{45661034-b824-4aa9-a9c3-5d639c9ba056}</Project>
       <Name>RoutePlannerLib</Name>
