@@ -12,7 +12,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
     /// <summary>
     /// Manages a routes from a city to another city.
     /// </summary>
-    public class Routes
+    public class Routes : IRoutes
     {
         public delegate void RouteRequestHandler(object sender, RouteRequestEventArgs e);
         public event RouteRequestHandler RouteRequestEvent;
