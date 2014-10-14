@@ -84,5 +84,14 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             return false;
         }
 
+        public Boolean Equals(City fC, City tC, TransportModes mode)
+        {
+            if (FromCity.Name == fC.Name && ToCity.Name == tC.Name && TransportMode == mode)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

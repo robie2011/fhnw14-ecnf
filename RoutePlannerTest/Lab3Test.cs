@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
+using RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerTest
 {

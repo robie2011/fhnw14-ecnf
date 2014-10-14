@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// Test
+
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
     public class City
     {
-        public string Name {get; set;}
+        public string Name { get; set; }
         public string Country { get; set; }
         public int Population { get; set; }
         public WayPoint Location { get; set; }
-
-        public City(string name)
-        {
-            Name = name;
-        }
 
         // Lab 2, Aufgabe a
         public City(string name, string country, int population, double lat, double lng)
@@ -25,6 +20,20 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             Country = country;
             Location = new WayPoint(name, lat, lng);
             Population = population;
+        }
+
+        public City(string name)
+        {
+            Name = name;
+        }
+
+        public Boolean Equals(City c)
+        {
+            if (c.Name == this.Name && c.Country == this.Country)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
