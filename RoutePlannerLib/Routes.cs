@@ -104,9 +104,18 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         public List<Link> FindShortestRouteBetween(string fromCity, string toCity, TransportModes mode)
         {
             // created in order to get it to work
-            City fC = cities.FindCity(fromCity);
-            City tC = cities.FindCity(toCity);
+            City fC = cities.FindCity(fromCity) ?? new City(fromCity);
+            City tC = cities.FindCity(toCity) ?? new City(toCity);
 
+            // call Event
+            RouteRequestEventArgs routeRequest = new RouteRequestEventArgs(fC, tC, mode);
+
+            if (RouteRequestEvent != null)
+            {
+                RouteRequestEvent(this, routeRequest);
+            }
+
+            if (fC.Location == null || tC.Location == null) return null; // EXIT IF THERE ARE NO ROUTES
             // canged to cities.FindCitiesBetween from FindCitiesBetween
             var citiesBetween = cities.FindCitiesBetween(fC, tC);
             if (citiesBetween == null || citiesBetween.Count < 1 || routes == null || routes.Count < 1)
@@ -126,13 +135,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             // create a list with all cities on the route
             var citiesOnRoute = GetCitiesOnRoute(source, target, previous);
 
-            // call Event
-            RouteRequestEventArgs routeRequest = new RouteRequestEventArgs(fC, tC, mode);
 
-            if (RouteRequestEvent != null)
-            {
-                RouteRequestEvent(this, routeRequest);
-            }
 
             // prepare final list if links
             return FindPath(citiesOnRoute, mode);
