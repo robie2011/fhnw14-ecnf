@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LarsKessler.cs" />
+    <Compile Include="RobertRajakone.cs" />
     <Compile Include="RoutePlannerConsoleApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
