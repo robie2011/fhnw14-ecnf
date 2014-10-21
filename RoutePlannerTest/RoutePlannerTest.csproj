@@ -59,9 +59,6 @@
     <Compile Include="Lab4Test.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Lab5SerializerTest.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Lab5Test.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>

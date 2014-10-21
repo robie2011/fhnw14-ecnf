@@ -27,9 +27,24 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
         public static void Start()
         {
 
-            TestsLab5();
+            unterricht();
             Console.ReadKey();
         }
+
+        static void unterricht()
+        {
+            var actions = new Action[3];
+            for (var i = 0; i < actions.Length; i++)
+            {
+                //actions[i] = () => Console.Write(new iinteg i);
+            }
+            foreach (var a in actions)
+            {
+                a();
+            }
+
+        }
+
 
         static void TestsLab2()
         {
