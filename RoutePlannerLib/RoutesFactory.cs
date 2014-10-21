@@ -2,23 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib
+namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
     public class RoutesFactory
     {
         static public IRoutes Create(Cities cities)
         {
-            //TODO
-            return null;
+            var algorithmName = RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib.Properties.Settings.Default.RouteAlgorithm;
+            return Create(cities, algorithmName);
         }
 
         static public IRoutes Create(Cities cities, string algorithmClassName)
         {
-            //TODO
-            return null;
+            IRoutes algorithm = null;
+            Assembly asm = Assembly.GetExecutingAssembly();
+            try
+            {
+                Type type = asm.GetType(algorithmClassName);
+                algorithm = (IRoutes)Activator.CreateInstance(type,cities);
+            }
+            catch (Exception e) { }
+
+            return algorithm;
         } 
     }
 }
