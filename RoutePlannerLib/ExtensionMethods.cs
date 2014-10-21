@@ -18,4 +18,25 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
             }
         }
     }
+
+    public static class LinqExtension
+    {
+        public static IEnumerable<T> SelectR<T>(this IEnumerable<T> list, Predicate<T> predicate)
+        {
+            foreach (var element in list)
+            {
+                if(predicate.Invoke(element))
+                {
+                    yield return element;
+                }
+            }
+        }
+
+        public static IEnumerable<K> Select2<T,K>(this IEnumerable<T> sequence, Func<T,K> transform)
+        {
+            foreach (var s in sequence)
+                yield return transform(s);
+        }
+
+    }
 }

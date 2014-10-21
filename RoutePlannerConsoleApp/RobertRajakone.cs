@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Diagnostics;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
+using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util;
 
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
@@ -26,16 +27,26 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
         public static void Start()
         {
 
-            unterricht();
+            unterricht6_12();
             Console.ReadKey();
         }
 
-        static void unterricht()
+        static void unterricht6_12()
+        {
+            int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            var n = new List<int>(numbers);
+            var l = n.SelectR( p => p < 3 ).ToList();
+            l.ForEach( i => Console.WriteLine(i) );
+            
+        }
+
+        static void unterricht6_1()
         {
             var actions = new Action[3];
             for (var i = 0; i < actions.Length; i++)
             {
-                //actions[i] = () => Console.Write(new iinteg i);
+                var x = i;
+                actions[i] = () => Console.Write(x);
             }
             foreach (var a in actions)
             {
