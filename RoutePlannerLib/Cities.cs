@@ -93,13 +93,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         // Lab 3, Aufgabe 1
         public City FindCity(string cityName)
         {
-            // definition of searchfilter
-            Predicate<City> cpred = delegate(City c)
-            {
-                return c.Name.Equals(cityName, StringComparison.OrdinalIgnoreCase);
-            };
-
-            return cityList.Find(cpred);
+            return cityList.Find(city => city.Name.ToLower().Equals(cityName.ToLower()));
         }
 
         #region Lab04: FindShortestPath helper function
