@@ -35,7 +35,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
             var actions = new Action[3];
             for (var i = 0; i < actions.Length; i++)
             {
-                actions[i] = () => Console.Write(new iinteg i);
+                //actions[i] = () => Console.Write(new iinteg i);
             }
             foreach (var a in actions)
             {
