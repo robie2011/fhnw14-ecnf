@@ -10,11 +10,28 @@ using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
 {
-    class RobertRajakone
+    public static class RobertRajakone
     {
-        public static void main(string[] args)
+        static Assembly assembly;
+        static Cities cities;
+
+        static RobertRajakone()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
+            assembly = Assembly.GetExecutingAssembly();
+            cities = new Cities();
+            //cities.ReadCities("citiesTestDataLab2.txt");
+
+        }
+
+        public static void Start()
+        {
+
+            TestsLab5();
+            Console.ReadKey();
+        }
+
+        static void TestsLab2()
+        {
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.FileVersion;
             Console.WriteLine("Welcome to RoutePlanner ({0})", version);
@@ -38,10 +55,13 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
             var MyCities = new Cities();
 
             Console.WriteLine(MyCities.ReadCities("citiesTestDataLab2.txt"));
-
-            Console.ReadKey();
         }
 
+        static void TestsLab5()
+        {
+            writeTitle("TestLab 5");
+            IRoutes r = RoutesFactory.Create(cities);            
+        }
         
         static void writeTitle(string s)
         {

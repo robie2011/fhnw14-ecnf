@@ -9,9 +9,9 @@ using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
 {
-    class LarsKessler
+    public static class LarsKessler
     {
-        public static void main(string[] args)
+        public static void Start()
         {
 
         }

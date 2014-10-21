@@ -12,15 +12,15 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
     class RoutePlannerConsoleApp
     {
         static void Main(string[] args)
-        {
+        {            
             string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             if (username.Contains("Rajakone"))
             {
-                RobertRajakone.main(args);
+                RobertRajakone.Start();
             }
             else
             {
-                LarsKessler.main(args);
+                LarsKessler.Start();
             }
    
         }
