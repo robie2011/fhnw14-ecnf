@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Diagnostics;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
+using RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib;
 
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
