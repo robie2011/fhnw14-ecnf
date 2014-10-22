@@ -19,24 +19,22 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             // set culture to english in order to avoid decimal errors by parsing strings to doubles
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
-            int r = 0;
-
             // Lab 4, Aufgabe 3
+            int c = 0;
             using (TextReader reader = new StreamReader(filename))
             {
-                IEnumerable<string[]> citiesAsStrings = reader.GetSplittedLines('\t');
-                foreach (var cs in reader.GetSplittedLines('\t'))
-                {
-                    cityList.Add(new City(cs[0].Trim(), cs[1].Trim(),
+                var importedCitiesAsStrings = reader.GetSplittedLines('\t');
+                var importedCities = importedCitiesAsStrings.Select(cs => new City(cs[0].Trim(), cs[1].Trim(),
                                                 int.Parse(cs[2]),
                                                 double.Parse(cs[3]),
-                                                double.Parse(cs[4])));
-                    r++;
-                }
-            }
+                                                double.Parse(cs[4]))
+                                                ).ToList();
+                c = importedCities.Count();
 
-            Count += r;
-            return r;
+                cityList.AddRange(importedCities);
+            }
+            Count += c;
+            return c;
         }
 
         // Lab 2, Aufgabe 2c
