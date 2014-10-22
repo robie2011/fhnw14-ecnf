@@ -35,26 +35,6 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
                 }
             }
 
-            /*
-            int r = 0;
-            using (StreamReader sr = File.OpenText(filename))
-            {
-                while(!sr.EndOfStream)
-                {
-                    string s = sr.ReadLine();
-                    string[] obj = s.Split('\t');
-
-                    cityList.Add(new City(
-                        obj[0], 
-                        obj[1], 
-                        int.Parse(obj[2]), 
-                        Double.Parse(obj[3]), 
-                        Double.Parse(obj[4]))
-                    );
-                    ++r;
-                }
-            }
-            */
             Count += r;
             return r;
         }
