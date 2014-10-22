@@ -72,25 +72,6 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         // Lab 2, Aufgabe 2d
         public List<City> FindNeighbours(WayPoint location, double distance)
         {
-
-            /*
-            Old
-            var Results = new List<City>();
-            foreach (var c in cityList)
-            {
-                if (location.Distance(c.Location) <= distance)
-                    Results.Add(c);
-            }
-
-            // Lab 2, Aufgabe 2e
-            Results.Sort(delegate(City c1, City c2)
-            {
-                double d1 = location.Distance(c1.Location);
-                double d2 = location.Distance(c2.Location);
-                return d1.CompareTo(d2);
-            });
-            */
-
             // Lab 6, Aufgabe 1
             return cityList
                 .Where(c => location.Distance(c.Location) <= distance)
