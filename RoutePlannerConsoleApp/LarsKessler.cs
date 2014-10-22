@@ -13,7 +13,19 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
     {
         public static void Start()
         {
+            var actions = new Action[3];
 
+            for (var i = 0; i < actions.Length; i++)
+            {
+                actions[i] = () => Console.Write(i);
+            }
+
+            foreach (var a in actions)
+            {
+                a();
+            }
+
+            Console.ReadKey();
         }
     }
 }
