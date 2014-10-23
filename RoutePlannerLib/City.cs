@@ -29,11 +29,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 
         public Boolean Equals(City c)
         {
-            if (c.Name == this.Name && c.Country == this.Country)
-            {
-                return true;
-            }
-            return false;
+            return c.Name.Equals(this.Name) && c.Country.Equals(this.Country);
         }
     }
 }
