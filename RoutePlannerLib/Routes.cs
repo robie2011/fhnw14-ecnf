@@ -86,18 +86,28 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             City fC = cities.FindCity(fromCity) ?? new City(fromCity);
             City tC = cities.FindCity(toCity) ?? new City(toCity);
 
-            // call Event
-            RouteRequestEventArgs routeRequest = new RouteRequestEventArgs(fC, tC, mode);
 
             if (RouteRequestEvent != null)
             {
+                RouteRequestEventArgs routeRequest = new RouteRequestEventArgs(fC, tC, mode);
                 RouteRequestEvent(this, routeRequest);
             }
 
-            if (fC.Location == null || tC.Location == null) return null; // EXIT IF THERE ARE NO ROUTES
+            // We can not make calculations if locations are 
+            // We can not make calculations if no routes are available
+            if (
+                    fC.Location == null 
+                    || tC.Location == null
+                    || routes == null 
+                    || routes.Count < 1
+                ) return null;
+            
+
             // canged to cities.FindCitiesBetween from FindCitiesBetween
             var citiesBetween = cities.FindCitiesBetween(fC, tC);
-            if (citiesBetween == null || citiesBetween.Count < 1 || routes == null || routes.Count < 1)
+
+            // We can not make calculations if there are no cities between
+            if (citiesBetween == null || citiesBetween.Count < 1 )
                 return null;
 
             var source = citiesBetween[0];
@@ -113,8 +123,6 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 
             // create a list with all cities on the route
             var citiesOnRoute = GetCitiesOnRoute(source, target, previous);
-
-
 
             // prepare final list if links
             return FindPath(citiesOnRoute, mode);
@@ -221,30 +229,35 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             return citiesOnRoute;
         }
 
-        // Created Methods FindLink and FindPath
+        // Lab 4.1
         private List<Link> FindPath(List<City> citiesOnRoute, TransportModes mode)
         {
             var listOfLinks = new List<Link>();
 
-            for (int i = 0; i < routes.Count - 1; i++)
+            for (int i = 0; i < citiesOnRoute.Count - 1; i++)
             {
-                listOfLinks.Add(FindLink(cities[i], cities[i + 1], mode));
+                listOfLinks.Add(FindLink(citiesOnRoute[i], citiesOnRoute[i + 1], mode));
             }
 
             return listOfLinks;
         }
 
+        // Lab 4.1
         public Link FindLink(City fromCity, City toCity, TransportModes mode)
         {
-            foreach (Link l in routes)
-            {
-                if (l.Equals(fromCity, toCity, mode))
-                {
-                    return l;
-                }
-            }
+            Link link = routes
+                .Where(l => l.Equals(fromCity, toCity, mode) || l.Equals(toCity, fromCity, mode))
+                .DefaultIfEmpty(null)
+                .FirstOrDefault();
 
-            return null;
+            if(link != null)
+            {
+                return new Link(fromCity, toCity, link.Distance);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         #endregion
