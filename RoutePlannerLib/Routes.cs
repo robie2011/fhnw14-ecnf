@@ -59,45 +59,9 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
                     }
                 }
 
-
-                /*
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        var linkAsString = line.Split('\t');
-
-                        City city1 = cities.FindCity(linkAsString[0]);
-                        City city2 = cities.FindCity(linkAsString[1]);
-
-                        // only add links, where the cities are found 
-                        if ((city1 != null) && (city2 != null))
-                        {
-                            routes.Add(new Link(city1, city2, city1.Location.Distance(city2.Location),
-                                                       TransportModes.Rail));
-                        }
-                    }
-                 */
             }
             return Count;
         }
-
-        /*
-        public List<Link> FindShortestRouteBetween(string fromCity, string toCity,
-                                TransportModes mode)
-        {
-            City fCity = new City(fromCity);
-            City tCity = new City(toCity);
-
-            RouteRequestEventArgs routeRequest = new RouteRequestEventArgs(fCity, tCity, mode);
-
-            if (RouteRequestEvent != null)
-            {
-                RouteRequestEvent(this, routeRequest);
-            }
-
-            return new List<Link>();
-        }
-        */
 
         // Lab 4, Aufgabe 1
         #region Lab04: Dijkstra implementation
