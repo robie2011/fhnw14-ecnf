@@ -20,10 +20,8 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
             }
             else
             {
-                RobertRajakone.Start();
-                //LarsKessler.Start();
+                LarsKessler.Start();
             }
-   
         }
     }
 }
