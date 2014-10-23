@@ -63,6 +63,21 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             return Count;
         }
 
+        // Lab 6.3
+        public City[] FindCities(TransportModes transportMode)
+        {
+            List<City> cityList = new List<City>() ;
+            routes
+                .Where(lnk => lnk.TransportMode == transportMode)
+                .ToList()
+                .ForEach( lnk => {
+                    cityList.Add(lnk.FromCity);
+                    cityList.Add(lnk.ToCity);
+                });
+
+            return cityList.Distinct().ToArray();
+        }
+
         // Lab 4, Aufgabe 1
         #region Lab04: Dijkstra implementation
         public List<Link> FindShortestRouteBetween(string fromCity, string toCity, TransportModes mode)
