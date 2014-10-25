@@ -23,7 +23,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 
         public override string ToString()
         {
-            string str = String.Format("{0}/{1}", Math.Round(Latitude, 2), Math.Round(Longitude, 2));
+            string str = String.Format("{0:F2}/{1:F2}", Latitude, Longitude);
             string theName = "";
 
             if (Name != null)
