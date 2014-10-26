@@ -36,24 +36,6 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
             //var propertyInfos2Serialize = GetPropertyInfos2Serialize(o);
         }
 
-        /*
-        private List<PropertyInfo> GetPropertyInfos2Serialize(object o)
-        {
-            var propertyInfos2Serialize = new List<PropertyInfo>();
-            Type type = o.GetType();
-            var propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            foreach (var propertyInfo in propertyInfos)
-            {
-                if (supportedTypes.Contains(propertyInfo.PropertyType))
-                {
-                    propertyInfos2Serialize.Add(propertyInfo);
-                }
-            }
-
-            return propertyInfos2Serialize;
-        }
-        */
-
         public SerializationBinder Binder
         {
             get
