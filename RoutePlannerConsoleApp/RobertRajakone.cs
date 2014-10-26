@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Diagnostics;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util;
+using System.IO;
 
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
@@ -27,8 +28,20 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
         public static void Start()
         {
 
-            unterricht6_12();
+            serialTests();
             Console.ReadKey();
+        }
+
+        static void serialTests()
+        {
+            var file = @"C:\coding\ECNF\RoutePlaner\RoutePlannerTest\data\citiesTestDataLab2.txt";
+            var cities = new Cities();
+            cities.ReadCities(file);
+
+            var bkpFile = @"c:\tmp\serialize.txt";
+            var stream = new FileStream(bkpFile, FileMode.Create, FileAccess.Write, FileShare.None);
+            var formatter = new SimpleIniFormatter();
+            formatter.Serialize(stream, cities);
         }
 
         static void unterricht6_12()
