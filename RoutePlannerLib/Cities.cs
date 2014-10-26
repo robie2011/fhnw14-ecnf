@@ -8,6 +8,7 @@ using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
+   [Serializable]
     public class Cities
     {
         List<City> cityList = new List<City>();
