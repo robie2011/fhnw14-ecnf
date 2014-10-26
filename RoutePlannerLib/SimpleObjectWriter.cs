@@ -9,9 +9,10 @@ using System.Reflection;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
 {
-    class SimpleObjectWriter : IFormatter
+    public class SimpleObjectWriter : IFormatter
     {
         private List<Type> supportedTypes;
+        private StringWriter stream;
 
         public SimpleObjectWriter()
         {
@@ -20,6 +21,12 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
             supportedTypes.Add(typeof(string));
         }
 
+        public SimpleObjectWriter(StringWriter stream)
+        {
+            // TODO: Complete member initialization
+            this.stream = stream;
+            Console.WriteLine("custom constructor called");
+        }
 
         public void Serialize(Stream s, object o)
         {
@@ -82,6 +89,16 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
             {
                 throw new NotImplementedException();
             }
+        }
+
+        public override String ToString()
+        {
+            return "Test";
+        }
+
+        public void Next(City c)
+        {
+
         }
     }
 }

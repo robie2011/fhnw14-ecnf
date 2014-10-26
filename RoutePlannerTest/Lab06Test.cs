@@ -24,7 +24,6 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerTest
             // there must be no cities
             City[] emptyCitiesByMode = routes.FindCities(TransportModes.Bus);
             Assert.AreEqual(0, emptyCitiesByMode.Count());
-
         }
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util;
 using System;
 
-/*
+
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerTest
 {
     [TestClass]
@@ -88,4 +88,3 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerTest
     }
     
 }
-*/
