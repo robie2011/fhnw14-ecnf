@@ -106,5 +106,10 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
 
             this.stream.WriteLine("End of instance");
         }
+    
+        public override string ToString()
+        {
+            return stream.ToString();
+        }
     }
 }

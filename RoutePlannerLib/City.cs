@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
+    [Serializable]
     public class City
     {
         public string Name { get; set; }
