@@ -6,34 +6,37 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Reflection;
+using System.Globalization;
+using System.Threading;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
 {
     public class SimpleObjectWriter : IFormatter
     {
-        private List<Type> supportedTypes;
+        private List<Type> supportedTypes = new List<Type>();
         private StringWriter stream;
-
-        public SimpleObjectWriter()
-        {
-            supportedTypes.Add(typeof(double));
-            supportedTypes.Add(typeof(int));
-            supportedTypes.Add(typeof(string));
-        }
 
         public SimpleObjectWriter(StringWriter stream)
         {
-            // TODO: Complete member initialization
             this.stream = stream;
-            Console.WriteLine("custom constructor called");
+
+            supportedTypes.Add(typeof(double));
+            supportedTypes.Add(typeof(int));
+            supportedTypes.Add(typeof(string));
+
+            // use the dot you must! - Yoda
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
         }
 
         public void Serialize(Stream s, object o)
         {
-
-            var propertyInfos2Serialize = GetPropertyInfos2Serialize(o);
+            //var propertyInfos2Serialize = GetPropertyInfos2Serialize(o);
         }
 
+        /*
         private List<PropertyInfo> GetPropertyInfos2Serialize(object o)
         {
             var propertyInfos2Serialize = new List<PropertyInfo>();
@@ -49,6 +52,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
 
             return propertyInfos2Serialize;
         }
+        */
 
         public SerializationBinder Binder
         {
@@ -91,14 +95,34 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
             }
         }
 
-        public override String ToString()
+        public void Next(Object o)
         {
-            return "Test";
-        }
+            Type type = o.GetType();
+            this.stream.WriteLine("Instance of " + type.FullName);
 
-        public void Next(City c)
-        {
+            var propertyInfos = type.GetProperties();
 
+            foreach (var property in propertyInfos)
+            {
+                var value = property.GetValue(o);
+                var name = property.Name;
+
+                if (supportedTypes.Contains(property.PropertyType))
+                {
+                    if(property.PropertyType == typeof(string)) {
+                        this.stream.WriteLine(name + "=\"" + value + "\"");
+                    } else {
+                        this.stream.WriteLine(name + "=" + value);
+                    }
+                }
+                else
+                {
+                    this.stream.WriteLine(name + " is a nested object...");
+                    Next(property.GetValue(o));
+                }
+            }
+
+            this.stream.WriteLine("End of instance");
         }
     }
 }
