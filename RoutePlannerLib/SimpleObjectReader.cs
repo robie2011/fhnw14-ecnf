@@ -18,6 +18,12 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         {
             reader = sb;
             context = new StreamingContext(StreamingContextStates.All);
+
+            // use the dot you must! - Yoda
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
         }
 
         public City Next()
