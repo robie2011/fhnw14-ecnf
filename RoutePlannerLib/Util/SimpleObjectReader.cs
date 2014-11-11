@@ -7,7 +7,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Reflection;
 using System.Collections.Specialized;
-namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
+namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
 {
     public class SimpleObjectReader
     {

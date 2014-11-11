@@ -12,7 +12,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
     {
         static public IRoutes Create(Cities cities)
         {
-            var algorithmName = RoutePlannerLiFhnw.Ecnf.RoutePlanner.RoutePlannerLib.Properties.Settings.Default.RouteAlgorithm;
+            var algorithmName = Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Properties.Settings.Default.RouteAlgorithm;
             return Create(cities, algorithmName);
         }
 
