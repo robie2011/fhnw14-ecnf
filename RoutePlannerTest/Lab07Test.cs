@@ -48,7 +48,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerTest
              dynamic karachi = world.Karachi();
              Assert.AreEqual("Karachi", karachi.Name);
 
-             string notFound = world.Entenhausen() as string;
+             string notFound = world.Entenhausen();
              Assert.AreEqual("The city \"Entenhausen\" does not exist!", notFound);
         }
         

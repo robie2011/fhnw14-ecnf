@@ -13,15 +13,18 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Dynamic
 
         public World(Cities cities)
         {
-            // TODO: Complete member initialization
             this.cities = cities;
         }
 
-        public override bool TryInvoke(InvokeBinder binder, object[] args, out object result)
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            result = null;
+            result = this.cities.FindCity(binder.Name);
+            if (result == null)
+            {
+                result = String.Format("The city \"{0}\" does not exist!", binder.Name);
+            }
+            
             return true;
-            //return base.TryInvoke(binder, args, out result);
         }
 
     }
