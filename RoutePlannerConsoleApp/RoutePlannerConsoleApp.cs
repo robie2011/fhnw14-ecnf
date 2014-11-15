@@ -14,7 +14,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
         static void Main(string[] args)
         {            
             string username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-            if (username.Contains("Rajakone"))
+            if (username.ToLower().Contains("robert"))
             {
                 RobertRajakone.Start();
             }

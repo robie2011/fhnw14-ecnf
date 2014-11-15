@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Linq;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
-using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib

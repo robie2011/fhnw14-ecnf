@@ -25,7 +25,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
                 Type type = asm.GetType(algorithmClassName);
                 algorithm = (IRoutes)Activator.CreateInstance(type,cities);
             }
-            catch (Exception e) { }
+            catch (Exception) { }
 
             return algorithm;
         } 
