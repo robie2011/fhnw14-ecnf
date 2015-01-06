@@ -11,10 +11,13 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
 {
     public static class LarsKessler
     {
+        private static int SIZE = 100000;
+        private static byte[] b;
+
         public static void Start()
         {
             Cities cities = new Cities();
-            cities.ReadCities("citiesTestDataLab.txt");
+            cities.ReadCities("citiesTestDataLab2.txt");
 
             Routes route = new Routes(cities);
             route.ReadRoutes("linksTestDataLab3.txt");
@@ -32,6 +35,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
                 a();
             }
             */
+
             Console.ReadKey();
         }
     }
