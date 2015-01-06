@@ -19,7 +19,6 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             Name = _name;
             Latitude = _latitude;
             Longitude = _longitude;
-            Console.WriteLine("lat: {0} long: {1}", _latitude, _longitude);
         }
 
         public override string ToString()

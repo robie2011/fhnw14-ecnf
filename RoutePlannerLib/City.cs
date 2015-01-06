@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
     [Serializable]
     public class City
     {
+        [XmlIgnore]
+        public int Index { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
         public int Population { get; set; }

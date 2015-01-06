@@ -19,7 +19,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
             Cities cities = new Cities();
             cities.ReadCities("citiesTestDataLab2.txt");
 
-            Routes route = new Routes(cities);
+            Routes route = new RoutesDijkstra(cities);
             route.ReadRoutes("linksTestDataLab3.txt");
 
             /*

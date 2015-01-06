@@ -92,6 +92,5 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             }
             return false;
         }
-
     }
 }

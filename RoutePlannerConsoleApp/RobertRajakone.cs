@@ -13,17 +13,104 @@ using System.IO;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
 {
+
     public static class RobertRajakone
     {
 
+        public static class TaskTests
+        {
+            public static void start()
+            {
+                var alltask = Task.WhenAll( 
+                    downloadSourceUrl("http://www.fhnw.ch"), 
+                    downloadSourceUrl("http://www.google.ch"), 
+                    downloadSourceUrl("http://www.digitec.ch")
+                    );
+
+            }
+
+            static Task<string> downloadSourceUrl(string url)
+            {
+                return Task.Run(() =>
+                    {
+                        Console.WriteLine("Start: " + url);
+                        var client = new System.Net.WebClient();
+                        var s = client.DownloadString(url);
+                        Console.WriteLine("Download done: " + url);
+                        return s;
+                    }
+                );
+            }
+        }
+
+        public static class Parallism
+        {
+            public static void CalculatePrimeSingle( int from, int to)
+            {
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+
+                var numbers = Enumerable.Range(from, to);
+                var parallelQuery = numbers.Where(n =>
+                Enumerable.Range(2, (int)Math.Sqrt(n)).All(i => n % i != 0));
+
+                stopWatch.Stop();
+                foreach (var i in parallelQuery.ToArray()) Console.WriteLine(i);
+                Console.WriteLine( String.Format(" {0} - {1}, Single, Eslapsed Ticks: {2} ", from,to, stopWatch.ElapsedTicks));
+            }
+            public static void CalculatePrimeParallel(int from, int to)
+            {
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+                
+                var numbers = Enumerable.Range(from, to);
+                var parallelQuery = numbers.AsParallel().Where(n =>
+                Enumerable.Range(2, (int)Math.Sqrt(n)).All(i => n % i != 0));
+
+                stopWatch.Stop();
+                foreach (var i in parallelQuery.ToArray().OrderBy(i=>i)) Console.WriteLine(i);
+                Console.WriteLine(String.Format(" {0} - {1}, Single, Eslapsed Ticks: {2} ", from, to, stopWatch.ElapsedTicks));
+            }
+
+            public static void CheckFloyedWarshallAlg()
+            {
+                Cities cities = new Cities();
+
+                cities.ReadCities(@"C:\data\sourcecode\fhnw\ecnf\fhnw14-ecnf\RoutePlannerTest\data\citiesTestDataLab11.txt");
+                /*
+                Routes routes = new RoutesDijkstra(cities);
+                long dijkstraTime = FindRoutes(routes);
+                */
+
+                var routes = new RoutesFloydWarshall(cities);
+                routes.ExecuteParallel = true;
+                long floydWarshallTime = FindRoutes(routes);
+            }
+
+            private static long FindRoutes(Routes routes)
+            {
+                int count = routes.ReadRoutes(@"C:\data\sourcecode\fhnw\ecnf\fhnw14-ecnf\RoutePlannerTest\data\linksTestDataLab11.txt");
+
+                // test available cities
+                Stopwatch timer = new Stopwatch();
+
+                timer.Start();
+                List<Link> links = routes.FindShortestRouteBetween("Lyon", "Berlin", TransportModes.Rail);
+                return timer.ElapsedTicks;
+            }
+        }
 
         static RobertRajakone()
         {
-            //assembly = Assembly.GetExecutingAssembly();
-            //cities = new Cities();
-            //cities.ReadCities("citiesTestDataLab2.txt");
-            ;
 
+        }
+
+
+        public static void lektion08_parallelism()
+        {
+
+            Parallism.CalculatePrimeSingle(3, 30);
+            Parallism.CalculatePrimeParallel(3, 30);
         }
 
         public static void excel()
@@ -49,9 +136,10 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
 
         public static void Start()
         {
-
-            //excel();
+            Parallism.CheckFloyedWarshallAlg();
+            
             //Console.ReadKey();
+
         }
 
         static void serialTests()

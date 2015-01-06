@@ -47,6 +47,8 @@
     <Compile Include="City.cs" />
     <Compile Include="Dynamic\World.cs" />
     <Compile Include="Export\ExcelExchange.cs" />
+    <Compile Include="RoutesDijkstra.cs" />
+    <Compile Include="RoutesFloydWarshall.cs" />
     <Compile Include="Util\ExtensionMethods.cs" />
     <Compile Include="IRoutes.cs" />
     <Compile Include="Link.cs" />

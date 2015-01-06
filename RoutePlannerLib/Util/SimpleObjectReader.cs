@@ -80,6 +80,8 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
                     actualName = actualName.Replace("<", "");
                 }
 
+                if (actualName.Equals("Index")) continue; // Ignoring Index field, its calculated
+
                 if (fieldname2value.ContainsKey(actualName))
                 {
                     var fieldValue = fieldname2value[actualName];
