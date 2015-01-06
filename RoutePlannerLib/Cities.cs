@@ -14,8 +14,19 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         List<City> cityList = new List<City>();
         public int Count { get; private set; }
 
-        // Lab 2, Aufgabe 2b
-        public int ReadCities(string filename)
+       // Lab 9.1c
+       private List<City> InitIndexForAlgorithm(List<City> foundCities)
+        {
+           // set index for FloydWarshall
+           for (int index = 0; index < foundCities.Count; index++)
+           {
+               foundCities[index].Index = index;
+           }
+           return foundCities;
+        }
+
+       // Lab 2, Aufgabe 2b
+       public int ReadCities(string filename)
         {
             // set culture to english in order to avoid decimal errors by parsing strings to doubles
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
@@ -61,6 +72,8 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         // Lab 3, Aufgabe 1
         public City FindCity(string cityName)
         {
+            var found = cityList.Find(city => city.Name.Equals(cityName));
+            if (found != null) return found;
             return cityList.Find(city => city.Name.ToLower().Equals(cityName.ToLower()));
         }
 
@@ -90,8 +103,13 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
                         && c.Location.Longitude > minLon && c.Location.Longitude < maxLon));
 
             foundCities.Add(to);
-            return foundCities;
+            return  InitIndexForAlgorithm(foundCities);
         }
         #endregion
+
+       public List<City> FindCitiesBetween(string from, string to)
+        {
+            return FindCitiesBetween(FindCity(from), FindCity(to));
+        }
     }
 }

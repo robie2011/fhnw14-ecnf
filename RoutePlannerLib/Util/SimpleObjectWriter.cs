@@ -88,6 +88,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util
             {
                 var value = property.GetValue(o);
                 var name = property.Name;
+                if (name.Equals("Index")) continue;
 
                 if (supportedTypes.Contains(property.PropertyType))
                 {
