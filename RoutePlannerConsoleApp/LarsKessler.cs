@@ -13,6 +13,13 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
     {
         public static void Start()
         {
+            Cities cities = new Cities();
+            cities.ReadCities("citiesTestDataLab.txt");
+
+            Routes route = new Routes(cities);
+            route.ReadRoutes("linksTestDataLab3.txt");
+
+            /*
             var actions = new Action[3];
 
             for (var i = 0; i < actions.Length; i++)
@@ -24,7 +31,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerConsole
             {
                 a();
             }
-
+            */
             Console.ReadKey();
         }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util;
+using System.Diagnostics;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
@@ -14,27 +15,43 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         List<City> cityList = new List<City>();
         public int Count { get; private set; }
 
+        // Lab 8, Aufgabe 1a, using System.Diagnostics added
+        private static TraceSource source = new TraceSource("Cities");
+
         // Lab 2, Aufgabe 2b
         public int ReadCities(string filename)
         {
+            source.TraceEvent(TraceEventType.Information, 42, "ReadCities started");
+
             // set culture to english in order to avoid decimal errors by parsing strings to doubles
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             // Lab 4, Aufgabe 3
             int c = 0;
-            using (TextReader reader = new StreamReader(filename))
-            {
-                var importedCitiesAsStrings = reader.GetSplittedLines('\t');
-                var importedCities = importedCitiesAsStrings.Select(cs => new City(cs[0].Trim(), cs[1].Trim(),
-                                                int.Parse(cs[2]),
-                                                double.Parse(cs[3]),
-                                                double.Parse(cs[4]))
-                                                ).ToList();
-                c = importedCities.Count();
 
-                cityList.AddRange(importedCities);
+            try
+            {
+                using (TextReader reader = new StreamReader(filename))
+                {
+                    var importedCitiesAsStrings = reader.GetSplittedLines('\t');
+                    var importedCities = importedCitiesAsStrings.Select(cs => new City(cs[0].Trim(), cs[1].Trim(),
+                                                    int.Parse(cs[2]),
+                                                    double.Parse(cs[3]),
+                                                    double.Parse(cs[4]))
+                                                    ).ToList();
+                    c = importedCities.Count();
+
+                    cityList.AddRange(importedCities);
+                }
+            }
+            catch(Exception e)
+            {
+                source.TraceEvent(TraceEventType.Critical, 42, "File not found: " + e.StackTrace);
             }
             Count += c;
+
+            source.TraceEvent(TraceEventType.Information, 42, "ReadCities ended");
+            source.Flush();
             return c;
         }
 

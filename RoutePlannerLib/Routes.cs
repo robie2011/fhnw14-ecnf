@@ -5,6 +5,7 @@ using System.Threading;
 using System.Linq;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib;
 using Fhnw.Ecnf.RoutePlanner.RoutePlannerLib.Util;
+using System.Diagnostics;
 
 namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
 {
@@ -17,6 +18,9 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         public event RouteRequestHandler RouteRequestEvent;
         List<Link> routes = new List<Link>();
         Cities cities;
+
+        // Lab 8, Aufgabe 1a, using System.Diagnostics added
+        private static TraceSource source = new TraceSource("Routes");
 
         public int Count
         {
@@ -41,6 +45,8 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         /// <returns>number of read route</returns>
         public int ReadRoutes(string filename)
         {
+            source.TraceEvent(TraceEventType.Information, 42, "ReadRoutes started");
+
             using (TextReader reader = new StreamReader(filename))
             {
                 IEnumerable<string[]> citiesAsStrings = reader.GetSplittedLines('\t');
@@ -57,8 +63,10 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
                                                    TransportModes.Rail));
                     }
                 }
-
             }
+
+            source.TraceEvent(TraceEventType.Information, 42, "ReadRoutes ended");
+            source.Flush();
             return Count;
         }
 
