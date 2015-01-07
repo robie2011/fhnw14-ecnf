@@ -155,7 +155,8 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             return FindShortestRouteBetweenAlgorithm(fromCity, toCity, mode,null);
         }
         public List<Link> FindShortestRouteBetweenAlgorithm(City fromCity, City toCity, TransportModes mode, IProgress<string> progress = null)
-        {            
+        {
+            report(progress, "Starting ");
             EmitRouteEvent(this, new RouteRequestEventArgs(fromCity, toCity, mode));
 
             // We can not make calculations if locations are 
