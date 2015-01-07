@@ -79,6 +79,7 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
         // Lab 6.3
         public City[] FindCities(TransportModes transportMode)
         {
+            /* before feedback of milestone 3
             List<City> cityList = new List<City>() ;
             routes
                 .Where(lnk => lnk.TransportMode == transportMode)
@@ -89,6 +90,18 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
                 });
 
             return cityList.Distinct().ToArray();
+            */
+
+            // after feedback of milestone 3
+            var from = routes
+                .Where(lnk => lnk.TransportMode == transportMode)
+                .Select(lnk => lnk.FromCity);
+
+            return routes
+                .Where(lnk => lnk.TransportMode == transportMode)
+                .Select(lnk => lnk.ToCity)
+                .Union(from)
+                .ToArray();
         }
 
         public virtual List<Link> FindShortestRouteBetween(string from, string to, TransportModes mode)

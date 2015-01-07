@@ -25,7 +25,12 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
                 Type type = asm.GetType(algorithmClassName);
                 algorithm = (IRoutes)Activator.CreateInstance(type,cities);
             }
-            catch (Exception) { }
+            catch (Exception e) 
+            {
+                // added cw after feedback of milestone 3
+                Console.WriteLine(e.ToString()); 
+            }
+
 
             return algorithm;
         } 
