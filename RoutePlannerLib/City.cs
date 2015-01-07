@@ -31,8 +31,9 @@ namespace Fhnw.Ecnf.RoutePlanner.RoutePlannerLib
             Name = name;
         }
 
-        public Boolean Equals(City c)
+        public Boolean Equals(Object o)
         {
+            var c = o as City;
             return c.Name.Equals(this.Name) && c.Country.Equals(this.Country);
         }
     }
